@@ -28,7 +28,7 @@ Route::middleware('auth')->prefix('admin')->group(function()
 {
     Route::get('/prognoses', [WeatherController::class, 'index']);
     Route::get('/all-weather', [WeatherController::class, 'getAllWeather']);
-    Route::post('/send-weather', [WeatherController::class, 'sendWeather']);
+    Route::post('/send-weather', [WeatherController::class, 'sendWeather'])->name('createWeather');
     Route::get('/delete-weather/{weather}', [WeatherController::class, 'delete'])->name('obrisiPrognozu');
     Route::get('/edit-weather/edit/{id}', [WeatherController::class, 'singleWeather'])->name('weather.single');
     Route::post('/edit-weather/save/{id}', [WeatherController::class, 'save'])->name('weather.save');
