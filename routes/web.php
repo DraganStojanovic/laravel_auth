@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use App\Models\Weather;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,9 @@ Route::get('/about', function(){
 Route::get('/contact', function(){
     return view('contact');
 });
+Route::get('/prognoses', [HomeController::class, 'index']);
 
-Route::middleware('auth')->prefix('admin')->group(function()
+Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
     Route::get('/prognoses', [WeatherController::class, 'index']);
     Route::get('/all-weather', [WeatherController::class, 'getAllWeather']);
