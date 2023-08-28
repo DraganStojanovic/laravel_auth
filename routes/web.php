@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WeatherController;
+use App\Models\Weather;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,32 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Route::get('/', function(){
+//    return view('home');
+//});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/about', function(){
+    return view('about');
 });
+
+Route::get('/contact', function(){
+    return view('contact');
+});
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/admin/prognoza', [WeatherController::class, 'index']);
+
+Route::get('admin/all-weather', [WeatherController::class, 'getAllWeather']);
+Route::post('/send-weather', [WeatherController::class, 'sendWeather']);
+Route::get('/delete-weather/{weather}', [WeatherController::class, 'delete'])->name('obrisiPrognozu');
+Route::get('/edit-weather/edit/{id}', [WeatherController::class, 'singleWeather'])->name('weather.single');
+Route::post('/edit-weather/save/{id}', [WeatherController::class, 'save'])->name('weather.save');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
