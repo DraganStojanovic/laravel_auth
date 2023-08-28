@@ -38,17 +38,12 @@ class WeatherController extends Controller
 
         ]);
 
-        // php artisan storage:link -> pravi symlink na "storage/app/public"
-        // Mi kada upload sliku stavljamo je u "storage/app/public/images"
-        // Posle mi mozemo da pristupimo njoj pomocu symlinka iz "/public/storage/images"
-        // Naravno kada ti ucitavas sliku u HTML ti ne stavljas "/public/storage/images" vec samo "/storage/images" jer "/" mu je public
-        // Enjoy :)
         Weather::create([
             'city' => $request->get('city'),
             'temperature' => $request->get('temperature'),
         ]);
 
-        return redirect('/admin/prognoza/');
+        return redirect('/admin/prognoses/');
     }
 
     public function delete($weather)
@@ -87,8 +82,7 @@ class WeatherController extends Controller
         $weather->temperature = $request->get('temperature');
         $weather->save();
 
-//        return redirect()->back();
-        return redirect('/admin/prognoza/');
+        return redirect('/admin/prognoses/');
 
 
     }
