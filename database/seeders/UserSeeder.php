@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
     {
         $amount = $this->command->getOutput()->ask('How many users you want to seed?', 100);
         $password = $this->command->getOutput()->ask('Whitch password you want yo add','12345678');
-        dd($password);
 
         $faker = Factory::create();
         $this->command->getOutput()->progressStart($amount);
