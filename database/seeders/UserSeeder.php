@@ -15,19 +15,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-//        User::create([
-//            'name' => 'Dragan Smith',
-//            'email' => 'dragansw@gmail.com',
-//            'password' => Hash::make('1111'),
-//        ]);
+        $amount = $this->command->getOutput()->ask('How many users you want to seed?', 100);
+        $password = $this->command->getOutput()->ask('Whitch password you want yo add','12345678');
+        dd($password);
+
         $faker = Factory::create();
-        for( $i = 0; $i < 500; $i++ )
+        $this->command->getOutput()->progressStart($amount);
+
+        for( $i = 0; $i < $amount; $i++ )
         {
             User::create([
                 'name' =>  $faker->name,
                 'email' => $faker->email,
-                'password' => Hash::make('12345678')
+                'password' => Hash::make($password)
             ]);
+            $this->command->getOutput()->progressAdvance();
         }
+        $this->command->getOutput()->progressFinish();
     }
+
 }
