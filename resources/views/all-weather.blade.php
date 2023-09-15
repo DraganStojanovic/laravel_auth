@@ -13,7 +13,7 @@
                 <p class="lead mb-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae justo molestie, maximus risus eu, pretium ligula. Donec at magna et nisi viverra lobortis id eget nisl. Pellentesque sed eros et odio egestas auctor.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a class="btn btn-primary btn-lg px-4" href="{{ url('/shop-page') }}" role="button">Get back to Shop</a>
+                    <a class="btn btn-primary btn-lg px-4" href="{{ url('/contact-page') }}" role="button">Get back to Shop</a>
                     <a class="btn btn-info btn-lg px-4" href="{{ url('/about-page') }}" role="button">About Us</a>
                 </div>
             </div>

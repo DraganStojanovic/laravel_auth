@@ -30,7 +30,7 @@ class WeatherController extends Controller
         ]);
     }
 
-    public function sendWeather(Request $request)
+    public function sendWeather(Request $request, Weather $id)
     {
         $request->validate([
             'city' => 'required|string|min:3|unique:weather',
@@ -43,7 +43,7 @@ class WeatherController extends Controller
             'temperature' => $request->get('temperature'),
         ]);
 
-        return redirect('/admin/prognoses/');
+        return redirect()->route('adminPrognoses');
     }
 
     public function delete($weather)
@@ -55,35 +55,34 @@ class WeatherController extends Controller
         if ($singleWeather === null) {
             die('Weather is not found in the list of products list!');
         }
-
         $singleWeather->delete();
         return redirect()->back();
     }
 
-    public function singleWeather(Request $request, $id)
+    public function singleWeather(Request $request, Weather $weather)
     {
-        $weather = Weather::where('id', $id)->first();
-        if($weather === NULL)
-        {
-            die('Product is not found');
-        }
-        return view("edit-weather", compact('weather'));
+
+//        $weather = Weather::where('id', $id)->first();
+//        if($weather === NULL)
+//        {
+//            die('Product is not found');
+//        }
+        return view("edit-weather",compact("weather"));
     }
 
-    public function save(Request $request, $id)
+    public function save(Request $request, Weather $weather)
     {
-        $weather = Weather::where(['id' => $id])->first();
-
-        if($weather === NULL)
-        {
-            die('Weather is not found');
-        }
+//        $weather = Weather::where(['id' => $id])->first();
+//
+//        if($weather === NULL)
+//        {
+//            die('Weather is not found');
+//        }
         $weather->city = $request->get('city');
         $weather->temperature = $request->get('temperature');
         $weather->save();
 
-        return redirect('/admin/prognoses/');
-
+        return redirect()->route('adminPrognoses');
 
     }
 }

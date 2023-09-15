@@ -24,7 +24,7 @@
         <div class="container py-4 pb-5">
 
             <!-- Bootstrap 5 starter form -->
-            <form method="POST" action="{{ route('weather.save', ['id' => $weather->id ]) }}" id="contactForm" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('weather.save', ['weather' => $weather->id ]) }}" id="contactForm" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div>
                     @if ( $errors->any())

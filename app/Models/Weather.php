@@ -14,4 +14,5 @@ class Weather extends Model
     protected $fillable = [
         "city","temperature",
     ];
+
 }

@@ -24,7 +24,7 @@
                     <td>{{ $temperatura->temperature }}</td>
                     <td>
                         <a href="{{ route('obrisiPrognozu', ['weather' => $temperatura->id]) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ route('weather.single', ['id' => $temperatura->id ]) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('weather.single', ['weather' => $temperatura->id ]) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach

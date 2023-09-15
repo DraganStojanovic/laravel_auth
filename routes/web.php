@@ -28,12 +28,12 @@ Route::get('/prognoses', [HomeController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
-    Route::get('/prognoses', [WeatherController::class, 'index']);
+    Route::get('/prognoses', [WeatherController::class, 'index'])->name('adminPrognoses');
     Route::get('/all-weather', [WeatherController::class, 'getAllWeather']);
     Route::post('/send-weather', [WeatherController::class, 'sendWeather'])->name('createWeather');
     Route::get('/delete-weather/{weather}', [WeatherController::class, 'delete'])->name('obrisiPrognozu');
-    Route::get('/edit-weather/edit/{id}', [WeatherController::class, 'singleWeather'])->name('weather.single');
-    Route::post('/edit-weather/save/{id}', [WeatherController::class, 'save'])->name('weather.save');
+    Route::get('/edit-weather/edit/{weather}', [WeatherController::class, 'singleWeather'])->name('weather.single');
+    Route::post('/edit-weather/save/{weather}', [WeatherController::class, 'save'])->name('weather.save');
 });
 
 
