@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
@@ -25,6 +26,7 @@ Route::get('/contact', function(){
     return view('contact');
 });
 Route::get('/prognoses', [HomeController::class, 'index']);
+Route::get('/forecast/{city}/', [ForecastController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
