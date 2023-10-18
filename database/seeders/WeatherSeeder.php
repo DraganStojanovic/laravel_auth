@@ -26,7 +26,7 @@ class WeatherSeeder extends Seeder
             if($userWeather !== NULL)
             {
                 $this->command->getOutput()->error("Weather data already exists!");
-                return;
+                continue;
             }
             Weather::create([
                 'city' => $city,
