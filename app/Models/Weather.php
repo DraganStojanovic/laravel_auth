@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Weather extends Model
 {
-    use HasFactory;
+//    use HasFactory;
     const TABLE = "weather";
     protected $table = self::TABLE;
 
     protected $fillable = [
-        "city","temperature",
+        "city_id","temperature",
     ];
 
 }

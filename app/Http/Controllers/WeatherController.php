@@ -33,13 +33,13 @@ class WeatherController extends Controller
     public function sendWeather(Request $request, Weather $id)
     {
         $request->validate([
-            'city' => 'required|string|min:3|unique:weather',
+            'city_id' => 'required|string|min:3|unique:weather',
             'temperature' => 'required|string|min:2',
 
         ]);
 
         Weather::create([
-            'city' => $request->get('city'),
+            'city_id' => $request->get('city'),
             'temperature' => $request->get('temperature'),
         ]);
 
@@ -78,7 +78,7 @@ class WeatherController extends Controller
 //        {
 //            die('Weather is not found');
 //        }
-        $weather->city = $request->get('city');
+        $weather->city_id = $request->get('city');
         $weather->temperature = $request->get('temperature');
         $weather->save();
 

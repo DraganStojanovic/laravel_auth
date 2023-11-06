@@ -26,8 +26,8 @@ class UserWeatherSeeder extends Seeder
             $this->command->getOutput()->error('Please Add City Temperature');
         }
         Weather::create([
-            'city' => $city,
-            'temperature' => $temperature
+            'temperature' => $temperature,
+            'city_id' => $city,
         ]);
         $this->command->getOutput()->info("Successfully added City $city and Temperature $temperature");
     }

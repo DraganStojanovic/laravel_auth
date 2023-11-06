@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weather', function (Blueprint $table) {
-            $table->id();
-            $table->string('city_id');
-            $table->float('temperature');
-            $table->timestamps();
+        Schema::table('weather', function (Blueprint $table) {
+//            $table->dropColumn('city');
+
+            $table->unsignedBigInteger('city_id');
+
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
@@ -24,6 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('weather');
+        Schema::table('weather', function (Blueprint $table) {
+            //
+        });
     }
 };

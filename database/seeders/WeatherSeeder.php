@@ -22,14 +22,14 @@ class WeatherSeeder extends Seeder
         ];
 
         foreach ($weather as $city => $temperature)
-            $userWeather = Weater::where(['city' => $city])->first();
+            $userWeather = Weather::where(['city_id' => $city])->first();
             if($userWeather !== NULL)
             {
                 $this->command->getOutput()->error("Weather data already exists!");
                 continue;
             }
             Weather::create([
-                'city' => $city,
+                'city_id' => $city,
                 'temperature' => $temperature
             ]);
 
