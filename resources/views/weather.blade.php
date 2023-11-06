@@ -20,7 +20,7 @@
             @foreach( $weather as $key=>$temperatura)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $temperatura->city }}</td>
+                    <td>{{ $temperatura->city->name }}</td>
                     <td>{{ $temperatura->temperature }}</td>
                     <td>
                         <a href="{{ route('obrisiPrognozu', ['weather' => $temperatura->id]) }}" class="btn btn-danger">Delete</a>
@@ -33,6 +33,6 @@
     </div>
 @stop
 
-{{--@foreach ($prognoza as $grad=> $temperatura)--}}
-{{--    <p>Trenutno je {{ $temperatura }} stepena u gradu {{ $grad }}</p>--}}
+{{--@foreach ( $weather as $temperatura)--}}
+{{--    <p>Trenutno je {{ $temperatura->temperature }} stepena u gradu {{ $temperatura->city->name }}</p>--}}
 {{--@endforeach--}}

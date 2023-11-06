@@ -29,7 +29,7 @@
         @foreach( $weather as $key=>$temperatura)
             <tr>
                 <td>{{ ++$key }}</td>
-                <td>{{ $temperatura->city }}</td>
+                <td>{{ $temperatura->city->name }}</td>
                 <td>{{ $temperatura->temperature }}</td>
             </tr>
         @endforeach

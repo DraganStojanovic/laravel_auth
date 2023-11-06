@@ -8,4 +8,8 @@ class ForecastsModel extends Model
 {
     protected $table = 'forecasts';
     protected $fillable = ['city_id', 'temperature', 'forecast_data',];
+    public function city()
+    {
+        return $this->hasOne(CitiesModel::class, "id", "city_id");
+    }
 }
