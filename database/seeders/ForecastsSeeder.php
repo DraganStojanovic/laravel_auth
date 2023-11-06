@@ -23,8 +23,8 @@ class ForecastsSeeder extends Seeder
             {
                 ForecastsModel::create([
                     "city_id" => $city->id,
-                    "temperature" => "22.22",
-                    "forecast_date" => Carbon::now()
+                    "temperature" => rand(15, 30),
+                    "forecast_date" => Carbon::now()->addDays(rand(1, 30))
                 ]);
             }
         }
