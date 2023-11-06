@@ -5,7 +5,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
-use App\Models\Weather;
 use Illuminate\Support\Facades\Route;
 
 /*
