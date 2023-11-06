@@ -12,9 +12,9 @@ class ForecastController extends Controller
         ];
 
         $city = strtolower($city);
-        if(!array_key_exists($city, $forecast)) // Provera da li postoji grad!
+        if (!array_key_exists($city, $forecast)) // Provera da li postoji grad!
         {
             die("Ovaj grad ne postoji!");
-        };
+        }
     }
 }

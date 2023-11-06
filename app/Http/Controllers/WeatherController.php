@@ -67,7 +67,7 @@ class WeatherController extends Controller
 //        {
 //            die('Product is not found');
 //        }
-        return view("edit-weather",compact("weather"));
+        return view("edit-weather", compact("weather"));
     }
 
     public function save(Request $request, Weather $weather)

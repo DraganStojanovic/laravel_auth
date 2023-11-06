@@ -12,14 +12,13 @@ class AdminCheckMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param Closure(Request): (Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         $role = Auth::user()->role;
 //dd($role);
-        if ($role != 'admin')
-        {
+        if ($role != 'admin') {
             return redirect('/');
         }
 
