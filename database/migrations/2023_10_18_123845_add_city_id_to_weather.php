@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('weather', function (Blueprint $table) {
-//            $table->dropColumn('city');
+       //     $table->dropColumn('city');
 
             $table->unsignedBigInteger('city_id');
 
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')
+                ->references('id')
+                ->on('cities');
         });
     }
 
