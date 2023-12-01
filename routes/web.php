@@ -25,7 +25,7 @@ Route::get('/contact', function(){
     return view('contact');
 });
 Route::get('/prognoses', [HomeController::class, 'index']);
-Route::get('/forecast/{city}/', [ForecastController::class, 'index']);
+Route::get('/forecast/{city:name}/', [ForecastController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
