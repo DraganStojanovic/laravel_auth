@@ -39,7 +39,7 @@ class WeatherController extends Controller
         ]);
 
         Weather::create([
-            'city_id' => $request->get('city'),
+            'city_id' => $request->get('city_id'),
             'temperature' => $request->get('temperature'),
         ]);
 
@@ -83,6 +83,5 @@ class WeatherController extends Controller
         $weather->save();
 
         return redirect()->route('adminPrognoses');
-
     }
 }

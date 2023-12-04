@@ -13,6 +13,8 @@ class Weather extends Model
     protected $fillable = [
         "city_id",
         "temperature",
+        "weather_type",
+        "probability",
     ];
 
     public function city()

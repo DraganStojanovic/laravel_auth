@@ -38,12 +38,12 @@
                 <!-- Email address input -->
                 <div class="col-md-6 offset-md-3 p-3">
                     <label class="form-label" for="City">City</label>
-                    <input class="form-control" id="city" name="city" placeholder="Name of product" value="{{ $weather->city }}" />
+                    <input class="form-control" name="city_id" placeholder="Name of product" value="{{ $weather->city_id }}" />
                 </div>
                 <!-- Name input -->
                 <div class="col-md-6 offset-md-3 p-3">
                     <label class="form-label" for="temperature">Temperature</label>
-                    <textarea class="form-control" id="temperature" name="temperature" placeholder="Temperature" style="height: 10rem; ">{{ $weather->temperature }}</textarea>
+                    <textarea class="form-control" name="temperature" placeholder="Temperature" style="height: 10rem; ">{{ $weather->temperature }}</textarea>
                 </div>
                 <!-- Form submit button -->
                 <div class="col-md-6 offset-md-3 d-grid">
