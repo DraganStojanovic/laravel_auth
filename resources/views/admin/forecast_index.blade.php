@@ -37,7 +37,7 @@
                 <br>
                 <p><strong>{{ $city->name }}</strong></p>
 
-                @foreach( $city->forecasts as $forecast)
+                @foreach( $city->forecasts->sortByDesc('forecast_date') as $forecast)
                     <li class="list-group-item">{{ $forecast->forecast_date }} - {{ $forecast->temperature }}</li>
                 @endforeach
             </ul>
