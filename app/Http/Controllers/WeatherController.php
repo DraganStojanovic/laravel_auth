@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Weather;
 use Illuminate\Http\Request;
+use App\Models\ForecastsModel;
 
 class WeatherController extends Controller
 {
@@ -18,14 +19,14 @@ class WeatherController extends Controller
 //        ];
 //
 //        return view('weather', compact('prognoza'));
-        return view('weather', [
+        return view('admin/weather', [
             "weather" => Weather::all(),
         ]);
     }
 
     public function getAllWeather()
     {
-        return view('all-weather', [
+        return view('admin/all-weather', [
             "weather" => Weather::all(),
         ]);
     }
@@ -67,18 +68,12 @@ class WeatherController extends Controller
 //        {
 //            die('Product is not found');
 //        }
-        return view("edit-weather", compact("weather"));
+        return view("/admin/edit-weather", compact("weather"));
     }
 
     public function save(Request $request, Weather $weather)
     {
-//        $weather = Weather::where(['id' => $id])->first();
-//
-//        if($weather === NULL)
-//        {
-//            die('Weather is not found');
-//        }
-        $weather->city_id = $request->get('city');
+        $weather->city_id = $request->get('city_id');
         $weather->temperature = $request->get('temperature');
         $weather->save();
 

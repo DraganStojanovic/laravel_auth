@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminForecastsController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -29,12 +30,17 @@ Route::get('/forecast/{city:name}/', [ForecastController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
+    Route::view("/forecasts", "admin.forecast_index");
+    Route::post("/forecasts/store", [AdminForecastsController::class, 'store'])->name('forecasts.store');
+
     Route::get('/prognoses', [WeatherController::class, 'index'])->name('adminPrognoses');
     Route::get('/all-weather', [WeatherController::class, 'getAllWeather']);
     Route::post('/send-weather', [WeatherController::class, 'sendWeather'])->name('createWeather');
     Route::get('/delete-weather/{weather}', [WeatherController::class, 'delete'])->name('obrisiPrognozu');
     Route::get('/edit-weather/edit/{weather}', [WeatherController::class, 'singleWeather'])->name('weather.single');
     Route::post('/edit-weather/save/{weather}', [WeatherController::class, 'save'])->name('weather.save');
+
+
 });
 
 

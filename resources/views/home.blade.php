@@ -2,17 +2,7 @@
 @section('title', 'Home Weather page')
 
 @section( 'content' )
-{{--    <div class="container pt-5">--}}
-{{--        <h1>Weather Today</h1><hr>--}}
-{{--        <div class="d-flex p-2 bd-highlight mb-3">--}}
-{{--        </div>--}}
 
-{{--            @foreach( $weather as $weathers)--}}
-{{--            <h1>Temperatura u {{ $weathers->city }} je {{ $weathers->temperature }}</h1>--}}
-
-{{--            @endforeach--}}
-
-{{--    </div>--}}
 <div class="container pt-5">
     <h1>Weather List Today</h1>
     <div class="d-flex p-2 bd-highlight mb-3">

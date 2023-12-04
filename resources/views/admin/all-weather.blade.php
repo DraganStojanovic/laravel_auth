@@ -38,14 +38,7 @@
                 <!-- Email address input -->
                 <div class="col-md-6 offset-md-3 p-3">
                     <label class="form-label" for="city">Name of City</label>
-                    <select name="city_id" class="form-select">
-
-                        @foreach(\App\Models\CitiesModel::all() as $city)
-                        <option selected>Open this select menu</option>
-                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-
-                    </select>
+                    <input type="text" class="form-control" placeholder="Name of City" name="city_id" value="{{ old("city_id") }}">
                 </div>
                 <!-- Name input -->
                 <div class="col-md-6 offset-md-3 p-3">
@@ -62,30 +55,6 @@
 
         </div>
     </div>
-    <hr>
-        <div class="container pt-5">
-            <h1>Weather List Today</h1>
-            <div class="d-flex p-2 bd-highlight mb-3">
-            </div>
-            <table class="table table-success table-striped">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>City</th>
-                    <th>Temperature</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach( $weather as $key=>$temperatura)
-                    <tr>
-                        <td>{{ ++$key }}</td>
-                        <td>{{ $temperatura->city->name }}</td>
-                        <td>{{ $temperatura->temperature }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
 
 
     <div class="container-fluid px-0 pt-5">
