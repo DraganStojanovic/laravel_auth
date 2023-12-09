@@ -38,8 +38,14 @@
                 <p><strong>{{ $city->name }}</strong></p>
 
                 @foreach( $city->forecasts->sortByDesc('forecast_date') as $forecast)
-                    <li class="list-group-item">{{ $forecast->forecast_date }} - {{ $forecast->temperature }}</li>
+
+                    @php
+                       $boja =  \App\Http\ForecastHelper::getColorByTemperature($forecast->temperature);
+                    @endphp
+
+                    <li class="list-group-item">{{ $forecast->forecast_date }} - <span style="color:{{ $boja }};">{{ $forecast->temperature }}</span></li>
                 @endforeach
+
             </ul>
         @endforeach
     </div>

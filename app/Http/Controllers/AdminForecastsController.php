@@ -30,7 +30,5 @@ class AdminForecastsController extends Controller
         } else {
             return redirect()->back()->with('error', 'Failed to save forecast to the database.');
         }
-
     }
-
 }
