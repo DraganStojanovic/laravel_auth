@@ -1,4 +1,4 @@
-@extends('master')
+@extends('admin.layout')
 @section('title', 'Weather Administration')
 
 @section( 'content' )

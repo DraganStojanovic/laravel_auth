@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AdminForecastsController extends Controller
 {
-    public function store(Request $request)
+    public function create(Request $request)
     {
      //  dd($request->all());
         $request->validate([

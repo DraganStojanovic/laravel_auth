@@ -14,64 +14,42 @@
                     <option value="{{ $city->city_id }}">{{ $city->name }}</option>
                 @endforeach
             </select>
-
-                <select name="weather_type">
-                    @foreach(\App\Models\ForecastsModel::WEATHERS as $weather)
-                            <option>{{ $weather }}</option>
-                    @endforeach
-                </select>
+            <select name="weather_type" required>
+                @foreach(\App\Models\ForecastsModel::WEATHERS as $weather)
+                    <option value="{{ $weather }}">{{ $weather }}</option>
+                @endforeach
+            </select>
 
                 <input type="text" name="temperature" placeholder="Add temperature">
                 <input type="text" name="probability" placeholder="Add Probability">
-                <input type="date" name="forecast_date">
+                <input type="date" name="forecast_date" min="{{ now()->toDateString() }}">
 
 
                 <button class="btn btn-primary btn-lg" type="submit">Record changes</button>
 
 
         </form>
-        @foreach( \App\Models\CitiesModel::all() as $city)
-            <ul class="list-group">
-                <br>
-                <p><strong>{{ $city->name }}</strong></p>
+        <div class="header mb-1 mt-4 p-4">
+            <h3>Weather List</h3>
+        </div>
+        <div class="d-flex flex-wrap pt-6 p-4" style="gap: 10px;">
+            @foreach( \App\Models\CitiesModel::all() as $city)
+                <ul class="list-group mb-4">
+                    <p class="mb-1"><strong>{{ $city->name }}</strong></p>
+                    @foreach( $city->forecasts->sortByDesc('forecast_date') as $forecast)
 
-                @foreach( $city->forecasts as $forecast)
-                    <li class="list-group-item">{{ $forecast->forecast_date }} - {{ $forecast->temperature }}</li>
-                @endforeach
-            </ul>
-        @endforeach
+                        @php
+                            $boja = \App\Http\ForecastHelper::getColorByTemperature($forecast->temperature);
+                            $icon = \App\Http\ForecastHelper::getIconByWeatherType($forecast->weather_type);
+                        @endphp
+
+                        <li class="list-group-item">{{ $forecast->forecast_date }} - <i class="fa-solid {{ $icon }}"></i><span style="color:{{ $boja }};"> {{ $forecast->temperature }} <i class="fa-solid fa-temperature-quarter"></i></span></li>
+                    @endforeach
+                </ul>
+            @endforeach
+        </div>
+
     </div>
 @stop
-{{--        <table class="table table-success table-striped">--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <th>No</th>--}}
-{{--                <th>City</th>--}}
-{{--                <th>Temperature</th>--}}
-{{--                <th>Weather Type</th>--}}
-{{--                <th>Probability %</th>--}}
-{{--                <th>Actions</th>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-{{--            @foreach( $weather as $key=>$temperatura)--}}
-{{--@foreach( \App\Models\CitiesModel::all() as $key=>$city)--}}
-{{--                <tr>--}}
-{{--                    <td>{{ ++$key }}</td>--}}
-{{--                    <td>{{ $city->name }}</td>--}}
-{{--                    <td>{{ $city->temperature }}</td>--}}
-
-{{--                        <td>{{ $forecast->forecast_date }}</td>--}}
-{{--                    <td>{{ $forecast->probability }}</td>--}}
-
-{{--                    @endforeach--}}
-{{--                    <td>--}}
-{{--                        <a href="{{ route('obrisiPrognozu', ['weather' => $city->id]) }}" class="btn btn-danger">Delete</a>--}}
-{{--                        <a href="{{ route('weather.single', ['weather' => $city->id ]) }}" class="btn btn-primary">Edit</a>--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-{{--            @endforeach--}}
-{{--            </tbody>--}}
-{{--        </table>--}}
 
 

@@ -26,12 +26,13 @@ Route::get('/contact', function(){
     return view('contact');
 });
 Route::get('/prognoses', [HomeController::class, 'index']);
+
 Route::get('/forecast/{city:name}/', [ForecastController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {
     Route::view("/forecasts", "admin.forecast_index");
-    Route::post("/forecasts/store", [AdminForecastsController::class, 'store'])->name('forecasts.store');
+    Route::post("/forecasts/create", [AdminForecastsController::class, 'create'])->name('forecasts.create');
 
     Route::get('/prognoses', [WeatherController::class, 'index'])->name('adminPrognoses');
     Route::get('/all-weather', [WeatherController::class, 'getAllWeather']);
