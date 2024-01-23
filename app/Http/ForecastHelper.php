@@ -7,7 +7,8 @@ class ForecastHelper
     const WEATHER_ICON = [
         'rainy' => 'fa-cloud-rain',
         'snowy' => 'fa-snowflake',
-        'sunny' => 'fa-sun'
+        'sunny' => 'fa-sun',
+        'cloudy' => 'fa-cloud-sun'
     ];
 
     public static function getIconByWeatherType($type)
