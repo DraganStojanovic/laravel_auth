@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -19,5 +19,16 @@
 
 
 </body>
+<script>
+    document.getElementById('btnSwitch').addEventListener('click',()=>{
+        if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+            document.documentElement.setAttribute('data-bs-theme','light')
+        }
+        else {
+            document.documentElement.setAttribute('data-bs-theme','dark')
+        }
+    })
+
+</script>
 @include('includes.footer')
 </html>

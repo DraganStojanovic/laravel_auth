@@ -63,11 +63,6 @@ class WeatherController extends Controller
     public function singleWeather(Request $request, Weather $weather)
     {
 
-//        $weather = Weather::where('id', $id)->first();
-//        if($weather === NULL)
-//        {
-//            die('Product is not found');
-//        }
         return view("/admin/edit-weather", compact("weather"));
     }
 

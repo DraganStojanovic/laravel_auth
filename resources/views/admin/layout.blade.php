@@ -12,7 +12,6 @@
 </head>
 <body>
 @include("admin.admin-navigation")
-{{--@include("includes.navigation")--}}
 
 @yield('content')
 
