@@ -10,7 +10,7 @@ class WeatherController extends Controller
 {
     public function index()
     {
-//        $prognoza = [
+        //        $prognoza = [
 //
 //            "Beograd"   => 22,
 //            "Novi Sad"  => 23,

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminForecastsController;
 use App\Http\Controllers\ForecastController;
+use App\Http\Controllers\ForecastsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
@@ -18,18 +19,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
+Route::view('/', 'home');
 Route::get('/about', function(){
     return view('about');
 });
 Route::get('/contact', function(){
     return view('contact');
 });
-Route::get('/prognoses', [HomeController::class, 'index']);
+Route::get('/prognoses', [HomeController::class, 'prognoses']);
 
+//Forecast/search?name=AS
+// Pomerena route inznad route {city:name} da bi prvo pretrazivalo ovu route!
+Route::get('forecast/search',[ForecastsController::class, 'search'])->name('forecast.search');
 
-
-Route::get('/forecast/{city:name}/', [ForecastController::class, 'index']);
+//Forecast/Hacketthaven forecast/Beograd = "search" - forecast/search
+Route::get('/forecast/{city:name}/', [ForecastController::class, 'index'])->name("forecast.permalink"); // Obratiti paznju na naziv Controller-a
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {

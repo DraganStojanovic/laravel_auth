@@ -13,7 +13,7 @@
                     <a class="nav-link {{ Request::path() ==  'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() ==  'prognoses' ? 'active' : '' }}" href="/prognoses">Weather</a>
+                    <a class="nav-link {{ Request::path() ==  'prognoses' ? 'active' : '' }}" href="/prognoses">Prognoses</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() ==  'contact' ? 'active' : '' }}" href="/contact">Contact</a>

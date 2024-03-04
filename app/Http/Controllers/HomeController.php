@@ -6,9 +6,9 @@ use App\Models\Weather;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function prognoses()
     {
-        return view('home', [
+        return view('prognoses', [
             "weather" => Weather::all(),
         ]);
     }
