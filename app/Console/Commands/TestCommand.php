@@ -12,7 +12,7 @@ class TestCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:test-command';
+    protected $signature = 'app:test-command {city}';
 
     /**
      * The console command description.
@@ -35,9 +35,13 @@ class TestCommand extends Command
 //        ]);
 //        dd($response->json());
 
-//        https://api.weatherapi.com/v1/current.json?key=8696aa3b9eaa4b7ea75160832242105&q=London&aqi=no
-        $response = Http::get("api.weatherapi.com/v1/current.json?key=8696aa3b9eaa4b7ea75160832242105&q=London&aqi=no");
-        dd($response->status());
+        $city = $this->argument("city");
+        $response = Http::get("api.weatherapi.com/v1/current.json", [
+            'key' => "8696aa3b9eaa4b7ea75160832242105",
+            'q' => $city,
+            'api' => "no"
+        ]);
+        dd($response->json());
 
     }
 }
