@@ -41,7 +41,14 @@ class TestCommand extends Command
             'q' => $city,
             'api' => "no"
         ]);
-        dd($response->json());
+
+        $jsonResponse = $response->json();
+        if(isset($jsonResponse['error']))
+        {
+            $this->output->error($jsonResponse['error']['message']);
+        }
+
+        dd($jsonResponse);
 
     }
 }
