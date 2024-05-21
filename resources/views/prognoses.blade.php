@@ -18,7 +18,9 @@
 
                     <li class="list-group-item">{{ $forecast->forecast_date }} - <span style="color:{{ $boja }};"><i
                                 class="fa-solid {{ $icon }}"></i> - {{ $forecast->temperature }} <i
-                                class="fa-solid fa-temperature-quarter"></i></span></li>
+                                class="fa-solid fa-temperature-quarter"></i> - <i class="far fa-heart" aria-hidden></i></span>
+
+                       </li>
                 @endforeach
             </ul>
         @endforeach
