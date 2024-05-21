@@ -39,7 +39,8 @@ class TestCommand extends Command
         $response = Http::get("api.weatherapi.com/v1/current.json", [
             'key' => "8696aa3b9eaa4b7ea75160832242105",
             'q' => $city,
-            'api' => "no"
+            'api' => "no",
+            'lang' => "sr"
         ]);
 
         $jsonResponse = $response->json();
