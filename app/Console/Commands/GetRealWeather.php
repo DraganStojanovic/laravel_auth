@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class GetRealWeather extends Command
 {
@@ -25,6 +26,10 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-       //
+       $url = "https://reqres.in/api/users?page=2";
+       $response = Http::get($url);
+      $jsonResponse = $response->body();
+      $jsonResponse = json_decode($jsonResponse, true); // JSON Asscpoativno array
+      dd($jsonResponse['data'][0]['email']);
     }
 }
