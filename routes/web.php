@@ -28,6 +28,7 @@ Route::get('/contact', function(){
     return view('contact');
 });
 Route::get('/prognoses', [HomeController::class, 'prognoses']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Forecast/search?name=AS
 // Pomerena route inznad route {city:name} da bi prvo pretrazivalo ovu route!
