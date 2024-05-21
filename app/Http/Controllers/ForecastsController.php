@@ -19,7 +19,5 @@ class ForecastsController extends Controller
         }
 
         return view("search_results", compact("cities"));
-
     }
-
 }

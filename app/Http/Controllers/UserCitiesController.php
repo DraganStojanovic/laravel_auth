@@ -18,11 +18,17 @@ class UserCitiesController extends Controller
         $city = CitiesModel::find($cityId);
 
         if ($city) {
-            $user->cities()->toggle($cityId);
-            return redirect()->back()->with('success', 'Grad je ažuriran!');
+            if ($user->cities()->where('city_id', $cityId)->exists()) {
+                $user->cities()->detach($cityId); // Ako već postoji, ukloni ga
+                return redirect()->back()->with('success', 'Grad je uklonjen iz omiljenih!');
+            } else {
+                $user->cities()->attach($cityId); // Ako ne postoji, dodaj ga
+                return redirect()->back()->with('success', 'Grad je dodat u omiljene!');
+            }
         }
 
         return redirect()->back()->with('error', 'Grad nije pronađen!');
     }
 }
+
 

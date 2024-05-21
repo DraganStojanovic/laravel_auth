@@ -37,9 +37,16 @@
                         <p>
                             Last Update: {{ $city->forecasts->last()->forecast_date }}
                         </p>
-                        <a class="btn btn-primary ms-3" href="{{ route("city.favourite", ['city' => $city->id] ) }}">
-                            <i class="fa-regular text-white fa-heart" aria-hidden></i>
-                        </a>
+
+                        @if(Auth::user() && Auth::user()->cities->contains($city->id))
+                            <a class="btn btn-danger ms-3" href="{{ route('city.favourite', ['city' => $city->id]) }}">
+                                <i class="fa-regular text-white fa-heart" aria-hidden></i> Ukloni iz omiljenih
+                            </a>
+                        @else
+                            <a class="btn btn-primary ms-3" href="{{ route('city.favourite', ['city' => $city->id]) }}">
+                                <i class="fa-regular text-white fa-heart" aria-hidden></i> Dodaj u omiljene
+                            </a>
+                        @endif
                     @else
                         <p>
                             <span style="color:red">We have no data available for today!</span>
