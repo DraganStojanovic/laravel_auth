@@ -5,7 +5,7 @@ use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ForecastsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserCities;
+use App\Http\Controllers\UserCitiesController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +39,8 @@ Route::get('/forecast/{city:name}/', [ForecastController::class, 'index'])->name
 /**
  *  User Cities
  */
-Route::get("user-cities/favourite/{city}", [UserCities::class, "favourite"])->name("city.favourite");
+Route::get("user-cities/favourite/{city}", [UserCitiesController::class, "favourite"])->name("city.favourite");
+Route::get('/city/favourite/{city}', [UserCitiesController::class, 'favourite'])->name('city.favourite');
 
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()

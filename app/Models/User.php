@@ -43,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function cities()
+    {
+        return $this->belongsToMany(CitiesModel::class, 'user_cities', 'user_id', 'city_id');
+    }
+
 }

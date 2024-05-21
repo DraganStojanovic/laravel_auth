@@ -20,4 +20,10 @@ class CitiesModel extends Model
         return $this->hasOne(ForecastsModel::class, "city_id", "id")
             ->whereDate("forecast_date", Carbon::now());
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_cities', 'city_id', 'user_id');
+    }
+
 }

@@ -37,7 +37,7 @@
                         <p>
                             Last Update: {{ $city->forecasts->last()->forecast_date }}
                         </p>
-                        <a class="btn btn-primary ms-3" href="{{ route("forecast.search", ['city' => $city->id] ) }}">
+                        <a class="btn btn-primary ms-3" href="{{ route("city.favourite", ['city' => $city->id] ) }}">
                             <i class="fa-regular text-white fa-heart" aria-hidden></i>
                         </a>
                     @else
