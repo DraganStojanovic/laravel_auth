@@ -10,7 +10,7 @@
     </div>
     <div class="d-flex flex-wrap pt-6 p-4" style="gap: 10px;">
 
-        @foreach(CitiesModel::all() as $city)
+        @foreach( CitiesModel::all() as $city)
 
             <ul class="list-group mb-4">
                 <p class="mb-1"><strong>{{ $city->name }}</strong></p>
@@ -27,9 +27,9 @@
                             <i class="fa-solid {{ $icon }}"></i> - {{ $forecast->temperature }}
                             <i class="fa-solid fa-temperature-quarter"></i>
                         </span>
-                        <a class="btn btn-primary ms-3">
-                            <i class="fa-regular text-white fa-heart" aria-hidden></i>
-                        </a>
+{{--                        <a class="btn btn-primary ms-3">--}}
+{{--                            <i class="fa-regular text-white fa-heart" aria-hidden></i>--}}
+{{--                        </a>--}}
                     </li>
                 @endforeach
             </ul>

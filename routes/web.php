@@ -5,6 +5,7 @@ use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ForecastsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserCities;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,12 @@ Route::get('forecast/search',[ForecastsController::class, 'search'])->name('fore
 
 //Forecast/Hacketthaven forecast/Beograd = "search" - forecast/search
 Route::get('/forecast/{city:name}/', [ForecastController::class, 'index'])->name("forecast.permalink"); // Obratiti paznju na naziv Controller-a
+
+/**
+ *  User Cities
+ */
+Route::get("user-cities/favourite/{city}", [UserCities::class, "favourite"])->name("city.favourite");
+
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix('admin')->group(function()
 {

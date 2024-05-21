@@ -15,7 +15,7 @@ class ForecastsController extends Controller
         $cities = CitiesModel::with("todaysForecast")->where("name", "LIKE", "%$cityName%")->get();
 
         if (count($cities) == 0) {
-            return redirect()->back()->with("error", "Nismo pronašli grad...");
+            return redirect()->back()->with("error", "Morate biti ulogovani da bi stavili grad u favourite!");
         }
 
         return view("search_results", compact("cities"));
