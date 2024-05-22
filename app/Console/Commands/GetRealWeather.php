@@ -36,6 +36,7 @@ class GetRealWeather extends Command
 //    }
     public function handle()
     {
+//        die("TEST"); TEST JE PROSAO
 //        $response = Http::get("https://reqres.in/api/users/2");
 //        dd($response->json());
 
