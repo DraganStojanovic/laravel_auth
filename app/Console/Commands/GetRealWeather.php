@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\CitiesModel;
+use App\Models\ForecastsModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -57,7 +58,7 @@ class GetRealWeather extends Command
         {
             $dbCity = CitiesModel::create(['name' => $city]);
         }
-        dd($dbCity->id);
+
 
         $response = Http::get(env("WEATHER_API_URL")."v1/forecast.json", [
             'key' => env("WEATHER_API_KEY"),
@@ -66,7 +67,7 @@ class GetRealWeather extends Command
             'days' => 1,
         ]);
 
-        dd($response->json());
+
 
         $jsonResponse = $response->json();
         if(isset($jsonResponse['error']))
@@ -74,6 +75,25 @@ class GetRealWeather extends Command
             $this->output->error($jsonResponse['error']['message']);
         }
 
+        // Ako vec postoji prognoza za danas da stane izvrsavanje komande!
+        if($dbCity->todaysForecast !== null)
+        {
+            $this->output->comment("Command executed");
+            return;
+        }
+
+        $forecastDate = $jsonResponse["forecast"]["forecastday"][0]["date"];
+        $temperature = $jsonResponse["forecast"]["forecastday"][0]["day"]["avgtemp_c"];
+        $weatherType = $jsonResponse["forecast"]["forecastday"][0]["day"]["condition"]["text"];
+        $probability = $jsonResponse["forecast"]["forecastday"][0]["day"]["daily_chance_of_rain"];
+
+        ForecastsModel::create([
+            "city_id"  => $dbCity->id,
+            "temperature" =>   $temperature,
+            "forecast_date" => $forecastDate,
+            "weather_type" => strtolower($weatherType),
+            "probability"   => $probability,
+        ]);
 
     }
 }
