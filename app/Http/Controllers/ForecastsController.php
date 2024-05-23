@@ -8,20 +8,42 @@ use Illuminate\Support\Facades\Artisan;
 
 class ForecastsController extends Controller
 {
+//    public function search(Request $request)
+//    {
+//
+//        $cityName = $request->get("city");
+//
+//            Artisan::call("weather:get-real", ['city' => $cityName]);
+//
+//        // Preloaded Search results with with()
+//        $cities = CitiesModel::with("todaysForecast")->where("name", "LIKE", "%$cityName%")->get();
+//
+//        if (count($cities) == 0) {
+//            return redirect()->back()->with("error", "Morate biti ulogovani da bi stavili grad u favourite!");
+//        }
+//
+//        return view("search_results", compact("cities"));
+//    }
     public function search(Request $request)
     {
+        $cityName = $request->get('city');
 
-        $cityName = $request->get("city");
-
-            Artisan::call("weather:get-real", ['city' => $cityName]);
-
-        // Preloaded Search results with with()
-        $cities = CitiesModel::with("todaysForecast")->where("name", "LIKE", "%$cityName%")->get();
-
-        if (count($cities) == 0) {
-            return redirect()->back()->with("error", "Morate biti ulogovani da bi stavili grad u favourite!");
+        if (empty($cityName)) {
+            \Log::error('City name is missing in the request.');
+            return redirect()->back()->with('error', 'City name is required.');
         }
 
-        return view("search_results", compact("cities"));
+        \Log::info('City name received in the request:', ['city' => $cityName]);
+
+        Artisan::call('weather:get-real', ['city' => $cityName]);
+
+        $cities = CitiesModel::with('todaysForecast')->where('name', 'LIKE', "%$cityName%")->get();
+
+        if ($cities->isEmpty()) {
+            return redirect()->back()->with('error', 'No cities found with the provided name.');
+        }
+
+        return view('search_results', compact('cities'));
     }
+
 }
