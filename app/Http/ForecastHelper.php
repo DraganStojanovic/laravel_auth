@@ -23,7 +23,7 @@ class ForecastHelper
 //            }
 //        return $icon;
 
-        $icons = match($type)
+        return match($type)
         {
             'rainy' => 'fa-cloud-rain',
             'snowy' => 'fa-snowflake',
@@ -31,7 +31,6 @@ class ForecastHelper
             'cloudy' => 'fa-cloud-sun',
             default  => 'fa-sun',
         };
-        return $icons;
     }
 
     public static function getColorByTemperature($temperature)
