@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
+use App\Services\WeatherService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -26,33 +27,8 @@ class GetRealWeather extends Command
     /**
      * Execute the console command.
      */
-//    public function handle()
-//    {
-//       $url = "https://reqres.in/api/users?page=2";
-//       $response = Http::get($url);
-//      $jsonResponse = $response->body();
-//      $jsonResponse = json_decode($jsonResponse, true); // JSON Asscpoativno array
-//      dd($jsonResponse['data'][0]['email']);
-//    }
     public function handle()
     {
-//        die("TEST"); TEST JE PROSAO
-//        $response = Http::get("https://reqres.in/api/users/2");
-//        dd($response->json());
-
-//        $response = Http::post("https://reqres.in/api/create", [
-//            "name"   => "Dragan",
-//            "job" => "Programmer",
-//        ]);
-//        dd($response->json());
-
-//       $city = $this->argument("city");
-//        $response = Http::get("api.weatherapi.com/v1/current.json", [
-//            'key' => "8696aa3b9eaa4b7ea75160832242105",
-//            'q' => $city,
-//            'api' => "no",
-//            'lang' => "sr"
-//        ]);
         $city = $this->argument("city");
         $dbCity = CitiesModel::where(['name' => $city])->first();
         if($dbCity === null)
@@ -60,15 +36,8 @@ class GetRealWeather extends Command
             $dbCity = CitiesModel::create(['name' => $city]);
         }
 
-
-        $response = Http::get(env("WEATHER_API_URL")."v1/forecast.json", [
-            'key' => env("WEATHER_API_KEY"),
-            'q' => $city,
-            'api' => "no",
-            'days' => 1,
-        ]);
-
-
+        $weatherService = new WeatherService();
+        $jsonResponse   = $weatherService->getForecast($city);
 
         $jsonResponse = $response->json();
         if(isset($jsonResponse['error']))

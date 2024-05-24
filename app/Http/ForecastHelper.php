@@ -13,16 +13,6 @@ class ForecastHelper
 
     public static function getIconByWeatherType($type)
     {
-//        $icon = self::WEATHER_ICON[$type] ?? null;
-        //            if($type == 'rainy') {
-//                return 'fa-cloud-rain';
-//            }elseif($type == 'showy'){
-//                return 'fa-snowflake';
-//            }elseif($type == 'sunny'){
-//                return 'fa-sun';
-//            }
-//        return $icon;
-
         return match($type)
         {
             'rainy' => 'fa-cloud-rain',
