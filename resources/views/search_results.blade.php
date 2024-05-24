@@ -7,6 +7,8 @@
 
     <div class="header mb-1 mt-4 p-4">
         <h3>Prognoses display</h3>
+        <!-- Dugme za vraćanje na početnu stranicu -->
+        <a class="btn btn-secondary" href="{{ url('/') }}">Vrati se na početnu stranicu</a>
     </div>
     <div class="d-flex flex-wrap pt-6 p-4 gap-3">
 
