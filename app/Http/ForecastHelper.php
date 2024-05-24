@@ -31,6 +31,7 @@ class ForecastHelper
             'cloudy' => 'fa-cloud-sun',
             default  => 'fa-sun',
         };
+        return $icon;
     }
 
     public static function getColorByTemperature($temperature)
