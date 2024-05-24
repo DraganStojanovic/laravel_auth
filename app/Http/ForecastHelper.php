@@ -13,7 +13,7 @@ class ForecastHelper
 
     public static function getIconByWeatherType($type)
     {
-        $icon = self::WEATHER_ICON[$type] ?? null;
+//        $icon = self::WEATHER_ICON[$type] ?? null;
         //            if($type == 'rainy') {
 //                return 'fa-cloud-rain';
 //            }elseif($type == 'showy'){
@@ -21,7 +21,16 @@ class ForecastHelper
 //            }elseif($type == 'sunny'){
 //                return 'fa-sun';
 //            }
-        return $icon;
+//        return $icon;
+
+        $icons = match($type)
+        {
+            'rainy' => 'fa-cloud-rain',
+            'snowy' => 'fa-snowflake',
+            'sunny' => 'fa-sun',
+            'cloudy' => 'fa-cloud-sun',
+            default  => 'fa-sun',
+        };
     }
 
     public static function getColorByTemperature($temperature)
