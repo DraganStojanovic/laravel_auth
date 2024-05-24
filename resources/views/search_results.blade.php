@@ -11,6 +11,7 @@
         <a class="btn btn-secondary" href="{{ url('/') }}">Vrati se na početnu stranicu</a>
     </div>
     <div class="d-flex flex-wrap pt-6 p-4 gap-3">
+
         @if(Session::has('error'))
             <div class="alert alert-danger w-100">
                 <p>{{ Session::get('error') }}</p>
@@ -23,7 +24,6 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $city->name }}</h5>
                     @if ($city->todaysForecast)
-
                         <p>
                             Weather Type:
                             <span style="color: {{ ForecastHelper::getColorByTemperature($city->todaysForecast->temperature) }}">
@@ -39,14 +39,6 @@
                         <p>
                             Last Update: {{ $city->forecasts->last()->forecast_date }}
                         </p>
-
-                        <!-- Dodavanje izlaska i zalaska sunca -->
-                        @if(isset($sunrise) && isset($sunset))
-                            <p>
-                                <strong>Sunrise:</strong> {{ \Carbon\Carbon::parse($sunrise)->format('H:i') }} <br>
-                                <strong>Sunset:</strong> {{ \Carbon\Carbon::parse($sunset)->format('H:i') }}
-                            </p>
-                        @endif
 
                         @if(Auth::user() && Auth::user()->cities->contains($city->id))
                             <a class="btn btn-danger ms-3" href="{{ route('city.favourite', ['city' => $city->id]) }}">
